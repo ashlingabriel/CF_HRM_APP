@@ -1,0 +1,14 @@
+namespace CF_HRM_APPS.HRMDBMODULE.CDS;
+using "CF_HRM_APPS.HRMDBMODULE.CDS::RecruitBoard.CandidateEntry" as CANDIDATEENTRY;
+using "CF_HRM_APPS.HRMDBMODULE.CDS::RecruitBoard.TNWREQ" as TNWREQ;
+context BusinessLogic {
+view SkillMatchProficiency as select from TNWREQ left outer join CANDIDATEENTRY on TNWREQ."RequirementID" = CANDIDATEENTRY."RequirementID"
+      {
+      	TNWREQ."RequirementID",
+      	CASE 
+      	when CANDIDATEENTRY."Skillsets1" = TNWREQ.REQMSKILL1
+      	then 'High'
+      	else null
+      	END as SkillMatchProficiency
+      };
+};

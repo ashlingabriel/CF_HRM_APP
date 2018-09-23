@@ -1,0 +1,14 @@
+namespace CF_HRM_APPS.HRMDBMODULE.CDS;
+
+context LaAdvantage {
+entity visaDurationEstimates{
+	key CountryID:String(254);
+	    CountryName:String(254);
+	    VisaType:String(254);
+	    VisaDuration:String(254);
+	    VisaCost:String(254);
+	    CorrespondingNationaltiy:String(254);
+	    RequiredDocument1:String(254);
+	
+}
+};

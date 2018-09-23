@@ -1,0 +1,53 @@
+ID: CF_HRM_APPS
+_schema-version: '3.1'
+version: 0.0.1
+modules:
+  - name: HRMDBMODULE
+    type: hdb
+    path: HRMDBMODULE
+    requires:
+      - name: hdi_HRMDBMODULE
+  - name: HRMServices
+    type: nodejs
+    path: HRMServices
+    provides:
+      - name: HRMServices_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_HRMDBMODULE
+      - name: HRMDBMODULE
+  - name: HRM_REQUIREMENT_BOARD
+    type: html5
+    path: HRM_REQUIREMENT_BOARD
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+    build-parameters:
+      builder: grunt
+    requires:
+      - name: uaa_CF_HRM_APPS
+      - name: dest_CF_HRM_APPS
+      - name: HRMServices_api
+        group: destinations
+        properties:
+          name: core_backend
+          url: '~{url}'
+          forwardAuthToken: true
+          strictSSL: false
+resources:
+  - name: hdi_HRMDBMODULE
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: uaa_CF_HRM_APPS
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_CF_HRM_APPS
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service

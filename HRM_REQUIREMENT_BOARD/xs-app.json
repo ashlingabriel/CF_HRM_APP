@@ -1,0 +1,22 @@
+{
+  "welcomeFile": "/HRM_REQUIREMENT_BOARD/index.html",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+  	{
+  	"source" : "^/core_backend/(.*)$",
+  	"target" : "$1",
+  	"authenticationType" : "none",
+  	"destination" : "core_backend",
+  	"csrfProtection":false
+  	},
+  	
+    {
+      "source": "^/HRM_REQUIREMENT_BOARD/(.*)$",
+      "target": "$1",
+      "localDir": "webapp"
+    }
+  ]
+}

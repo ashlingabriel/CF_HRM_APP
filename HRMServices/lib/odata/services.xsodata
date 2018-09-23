@@ -1,0 +1,5 @@
+service
+{
+"CF_HRM_APPS.HRMDBMODULE.CDS::RecruitBoard.TNWREQ" as "RecruiterBoard";
+"CF_HRM_APPS.HRMDBMODULE.CDS::RecruitBoard.CandidateEntry" as "CandidateEntry";
+}
